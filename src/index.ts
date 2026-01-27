@@ -6,7 +6,7 @@
  */
 
 export interface Env {
-  TOOLS_REGISTRY: KVNamespace;
+  TOOLS_REGISTRY?: KVNamespace; // Optional until KV namespace is created
   CONTINUITY: D1Database;
   ENVIRONMENT: string;
   VERSION: string;
@@ -137,10 +137,18 @@ export default {
 
 /**
  * Get all registered tools from KV storage
+ * 
+ * Future enhancement: When KV namespace is created, tools can be dynamically
+ * registered and persisted. For now, returns statically defined core tools.
  */
 async function getRegisteredTools(env: Env): Promise<any[]> {
-  // Initially return core tools
-  // TODO: Implement KV storage persistence
+  // Future: Check env.TOOLS_REGISTRY for dynamically registered tools
+  // if (env.TOOLS_REGISTRY) {
+  //   const registered = await env.TOOLS_REGISTRY.get('tools', 'json');
+  //   if (registered) return registered;
+  // }
+  
+  // Return core tools from the BlackRoad ecosystem
   return [
     {
       name: 'blackroad-tools',
@@ -202,11 +210,14 @@ function getOrganizations() {
 
 /**
  * Get repositories by organization
+ * 
+ * Future enhancement: Integrate with GitHub API or fetch from index.json at
+ * https://raw.githubusercontent.com/BlackRoad-OS/index/main/index.json
+ * 
+ * Current implementation returns organization summary. For detailed repository
+ * listings, users should query the GitHub API directly or visit the index repo.
  */
 async function getReposByOrg(orgName: string, env: Env): Promise<any[]> {
-  // TODO: Implement dynamic fetching from GitHub API or index.json
-  // For now, return static data for known orgs
-  
   const org = getOrganizations().find(o => 
     o.name.toLowerCase() === orgName.toLowerCase()
   );
@@ -220,6 +231,8 @@ async function getReposByOrg(orgName: string, env: Env): Promise<any[]> {
     repo_count: org.repos,
     focus: org.focus,
     url: org.url,
-    note: 'Use GitHub API or index.json for full repository list',
+    github_api: `https://api.github.com/orgs/${org.name}/repos`,
+    index_json: 'https://raw.githubusercontent.com/BlackRoad-OS/index/main/index.json',
+    note: 'For full repository listings, query GitHub API or fetch index.json',
   }];
 }

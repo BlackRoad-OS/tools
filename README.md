@@ -75,6 +75,24 @@ npm run dev
 npm run deploy
 ```
 
+### Configuration
+
+Before deploying to production:
+
+1. **Create KV Namespace** (optional):
+   ```bash
+   wrangler kv:namespace create "TOOLS_REGISTRY"
+   ```
+   Then update `wrangler.toml` with the returned namespace ID.
+
+2. **Set up secrets** in Cloudflare:
+   - `CLOUDFLARE_API_TOKEN` - For deployment
+   - Store other secrets in D1 `blackroad-continuity` database
+
+3. **GitHub Actions**: Add secrets to repository:
+   - `CLOUDFLARE_API_TOKEN`
+   - `CLOUDFLARE_ACCOUNT_ID`
+
 ## 📡 API Endpoints
 
 ### Tool Registry
