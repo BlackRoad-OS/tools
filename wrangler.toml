@@ -1,0 +1,22 @@
+name = "blackroad-tools-registry"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# Cloudflare Account ID
+account_id = "848cf0b18d51e0170e0d1537aec3505a"
+
+# KV Namespace for tools registry
+[[kv_namespaces]]
+binding = "TOOLS_REGISTRY"
+id = "placeholder"
+
+# D1 Database for continuity
+[[d1_databases]]
+binding = "CONTINUITY"
+database_name = "blackroad-continuity"
+database_id = "f0721506-cb52-41ee-b587-38f7b42b97d9"
+
+# Environment variables
+[vars]
+ENVIRONMENT = "production"
+VERSION = "1.0.0"
