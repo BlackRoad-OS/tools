@@ -1,0 +1,37 @@
+{
+  "name": "@blackroad-os/tools",
+  "version": "1.0.0",
+  "description": "Universal tools registry and utilities for the BlackRoad OS ecosystem - Integration hub for all BlackRoad organizations",
+  "main": "src/index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "test": "echo \"Tests coming soon\" && exit 0"
+  },
+  "keywords": [
+    "blackroad",
+    "blackroad-os",
+    "tools",
+    "utilities",
+    "ecosystem",
+    "cloudflare-workers"
+  ],
+  "author": "BlackRoad OS, Inc.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BlackRoad-OS/tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BlackRoad-OS/tools/issues"
+  },
+  "homepage": "https://github.com/BlackRoad-OS/tools#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.25.0"
+  }
+}
